@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi Escena VR</title>
+  <link rel="stylesheet" href="recursos/assets/styles.css">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+
+<body>
+<a-scene environment="preset: forest">
+
+    <a-assets>
+        <!-- Modelo GLB del bosque -->
+        <a-asset-item id="forest-glb" src="recursos/modelos/bosque.glb"></a-asset-item>
+        <a-asset-item id="Morty-glb" src="recursos/modelos/Morty.glb"></a-asset-item>
+
+        <!-- Imagen para link -->
+        <img id="EscenaFantasia" src="recursos/images/chess.jpg">
+    </a-assets>
+
+    <!-- Bosque GLB escalado y posicionado -->
+    <a-entity gltf-model="#forest-glb"
+              position="10 -4 -10"
+              scale="0.9 0.9 0.9"
+              rotation="0 180 0">
+    </a-entity>
+
+        <!-- Bosque Clonado para hacerlo mas grandeGLB escalado y posicionado -->
+    <a-entity gltf-model="#forest-glb"
+              position="100 -4 -10"
+              scale="0.9 0.9 0.9"
+              rotation="0 180 0">
+    </a-entity>
+
+            <!-- Bosque Clonado para hacerlo mas grandeGLB escalado y posicionado -->
+    <a-entity gltf-model="#forest-glb"
+              position="-100 -4 -10"
+              scale="0.9 0.9 0.9"
+              rotation="0 180 0">
+    </a-entity>
+
+            <!-- Bosque Clonado para hacerlo mas grandeGLB escalado y posicionado -->
+    <a-entity gltf-model="#forest-glb"
+              position="0 -4 110"
+              scale="0.9 0.9 0.9"
+              rotation="0 180 0">
+    </a-entity>
+
+            <!-- Bosque Clonado para hacerlo mas grandeGLB escalado y posicionado -->
+    <a-entity gltf-model="#forest-glb"
+              position="0 -4 -110"
+              scale="0.9 0.9 0.9"
+              rotation="0 180 0">
+    </a-entity>
+
+        <!-- Bosque GLB escalado y posicionado -->
+    <a-entity gltf-model="#Morty-glb"
+              position="5 -1 -1"
+              scale="1.2 1.2 1.2"
+              rotation="0 0 0"
+              animation="property: rotation; to: 0 230 0; loop: false; dur: 2000; easing: linear">
+    </a-entity>
+    
+
+    <!-- Link a otra escena con texto negro y más grande -->
+    <a-link href="escena2.html"
+            title="Camino a mi fantasia"
+            image="#EscenaFantasia"
+            position="-4 2 -3"
+            scale="3 3 3"
+            imageScale="0.5 0.5"
+            class="clickable">
+    </a-link>
+
+    <!-- Cámara con cursor -->
+<a-camera position="0 2 7">
+  <!-- Cursor solo visible cuando apunta a algo interactuable -->
+  <a-cursor color="#66ffff" fuse="false" rayOrigin="entity"></a-cursor>
+</a-camera>
+
+
+</a-scene>
+</body>
+</html>

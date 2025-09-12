@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Mundo Virtual</title>
+  <meta name="description" content="Explora tu aventura en VR">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+<body>
+  <div id="contenedor-principal">
+    <header>
+      <h1>Explora mi mundo VR</h1>
+    </header>
+
+    <main>
+      <!-- Escena VR incrustada -->
+      <iframe id="escenaVR" src="escena1.html"></iframe>
+      <button id="btn-entrar" onclick="window.location.href='escena1.html'">Entrar a la escena</button>
+    </main>
+
+    <footer>
+      <p>Proyecto de prueba con A-Frame</p>
+    </footer>
+  </div>
+</body>
+</html>

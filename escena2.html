@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Escena 2 - Proyecto VR</title>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+</head>
+<body>
+  <a-scene environment="preset: checkerboard; dressing: towers; dressingAmount: 20; groundColor: #445; skyColor: #222; lightPosition: 0 20 0">
+
+    <a-assets>
+
+      <!-- Modelo Morty -->
+      <a-asset-item id="Morty-glb" src="recursos/modelos/Morty.glb"></a-asset-item>
+      
+      <!-- Modelo Rick -->
+      <a-asset-item id="Rick-glb" src="recursos/modelos/Rick.glb"></a-asset-item>
+
+      <!-- Modelo Nave -->
+      <a-asset-item id="Nave-glb" src="recursos/modelos/Nave.glb"></a-asset-item>
+
+      
+      <!-- Imagen para link -->
+      <img id="EscenaFantasia" src="recursos/images/Fantasia.png">
+      
+        <!-- Imagen texturas -->
+      <img id="balonTexture" src="recursos/texturas/balon.jpg">
+    </a-assets>
+
+
+    <!-- Morty flotando arriba y abajo -->
+    <a-entity gltf-model="#Morty-glb"
+              position="1 1 -6"
+              scale="1.2 1.2 1.2"
+              rotation="0 230 0"
+              animation="property: position; to: 1 5 -6; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true">
+    </a-entity>
+
+    <!-- Morty flotando arriba y abajo + rotando -->
+<!-- Morty flotando + rotando en X e Y -->
+<a-entity gltf-model="#Rick-glb"
+          position="10 8 -6"
+          scale="1.2 1.2 1.2"
+          rotation="0 0 0"
+          animation__float="property: position;
+                             to: 10 8 -6;
+                             dir: alternate;
+                             dur: 3000;
+                             easing: easeInOutSine;
+                             loop: true"
+          animation__spinY="property: rotation;
+                            to: 0 360 0;
+                            dur: 8000;
+                            loop: true;
+                            easing: linear"
+          animation__spinX="property: rotation;
+                            to: 360 360 0;
+                            dur: 12000;
+                            loop: true;
+                            easing: linear">
+</a-entity>
+
+
+    
+        <!-- Nave -->
+    <a-entity gltf-model="#Nave-glb"
+              position="-1 0 -25"
+              scale="1.2 1.2 1.2"
+              rotation="0 250 0"
+              title="Nave Espacial"
+                        animation__hover="property: position;
+                             to: -1 20 -25;
+                             dur: 2000;
+                             dir: alternate;
+                             loop: 1;
+                             easing: easeInOutSine;
+                             startEvents: mouseenter;
+                             autoplay: false">
+    </a-entity>
+
+    <!-- Texto debajo de la nave -->
+<!-- Texto debajo de la nave -->
+<a-text value="Despegamos??"
+        position="-10 1 -10"
+        align="center"
+        color="white"
+        side="double"
+        width="10"
+        scale="2 2 2">
+</a-text>
+
+<!-- Texto debajo de la nave -->
+<a-text value="¡Hazme Rebotar!!"
+        position="14 1 -5"
+        align="center"
+        color="white"
+        side="double"
+        width="8"
+        scale="2 2 2">
+</a-text>
+
+<a-sphere radius="0.8" color="white" position="10 1 -5"
+          material="src: #balonTexture"
+          animation__hover="property: position;
+                             to: -4 6 10;
+                             dur: 2000;
+                             dir: alternate;
+                             loop: 1;
+                             easing: easeInOutSine;
+                             startEvents: mouseenter;
+                             autoplay: false">
+</a-sphere>
+
+
+    <!-- Link a otra escena con texto negro y más grande -->
+    <a-link href="escena1.html"
+            title="Volver a la realidad"
+            image="#EscenaFantasia"
+            position="-3 3 -10"
+            scale="3 3 3"
+            imageScale="0.5 0.5"
+            class="clickable">
+    </a-link>
+
+
+
+    <!-- Cámara con cursor -->
+  <a-camera position="0 2 6">
+    <!-- Cursor solo visible cuando apunta a algo interactuable -->
+    <a-cursor color="#66ffff" fuse="false" rayOrigin="entity"></a-cursor>
+  </a-camera>
+
+  </a-scene>
+</body>
+</html>
