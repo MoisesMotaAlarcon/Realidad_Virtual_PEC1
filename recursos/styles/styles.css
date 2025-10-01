@@ -1,0 +1,90 @@
+body {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #333;
+  text-align: center;
+}
+
+header {
+  background: #4CC3D9;
+  color: white;
+  padding: 1rem;
+}
+
+main {
+  padding: 1rem;
+  height: 600px;
+  position: relative;
+}
+
+iframe#escenaVR {
+  width:100%;
+  height: 100%;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+button#btn-entrar:hover {
+  background: #3aa1b7;
+}
+
+/* Footer general */
+footer {
+  background: #e0e0e0;
+  padding: 2rem 1rem;
+  color: #333;
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+/* Secciones dentro del footer */
+footer > div {
+  flex: 1 1 300px;
+}
+
+/* Títulos de secciones */
+footer h2, footer h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #0f869b;
+  margin-bottom: 0.5rem;
+}
+
+/* Listas */
+footer ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0 0 1rem 0;
+}
+
+footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Enlaces */
+footer a {
+  color: #0f869b;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Párrafos */
+footer p {
+  margin-bottom: 1rem;
+}
+
+/* Footer adaptativo */
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+  }
+}

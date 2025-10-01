@@ -3,31 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Mundo Virtual</title>
+  <title>PEC 1 Realidad Virtual</title>
   <meta name="description" content="Explora tu aventura en VR">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
 
-  <!-- CSS personalizado -->
-  <link rel="stylesheet" href="styles/styles.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="recursos/styles/styles.css">
 
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
 </head>
+
 <body>
-  <div id="contenedor-principal">
-    <header>
-      <h1>Explora mi mundo VR</h1>
-    </header>
+<div id="pagina">
+  <header class="container">
+    <h1>Explora mi mundo VR</h1>
+  </header>
 
-    <main>
-      <!-- Escena VR incrustada -->
-      <iframe id="escenaVR" src="escena1.html"></iframe>
-      <button id="btn-entrar" onclick="window.location.href='escena1.html'">Entrar a la escena</button>
-    </main>
+  <main class="container" id="VRarea">
+    <!-- Escena VR incrustada -->
+    <iframe id="escenaVR" src="escena1.html"></iframe>
+    <div id="go" onClick="javascript:document.location='escena1.html'"></div>
+  </main>
 
-    <footer>
-      <p>Proyecto de prueba con A-Frame</p>
-    </footer>
-  </div>
+  <footer class="container" id="footer">
+    <div>
+      <h2>Tutorial</h2>
+      <ul>
+        <li>Utiliza las teclas A, W, S, D o las flechas de dirección de tu teclado para moverte</li>
+        <li>Haz clic en las gafas para entrar</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Bibliografía y webgrafía de recursos</h3>
+      <ul>
+        <li>Moisés Mota Alarcón (2024) <em>Rick: Modelo 3D</em>. Alcoy. Licencia de uso: Propietario / Uso académico.</li>
+        <li>Moisés Mota Alarcón (2024) <em>Morty: Modelo 3D</em>. Alcoy. Licencia de uso: Propietario / Uso académico.</li>
+        <li>Moisés Mota Alarcón (2024) <em>Nave Rick y Morty: Modelo 3D</em>. Alcoy. Licencia de uso: Propietario / Uso académico.</li>
+        <li>Freepik. <em>Blue voronoi pattern background</em>.  
+          URL: <a href="https://www.freepik.com/free-vector/blue-voronoi-pattern-background_16302136.htm">https://www.freepik.com/free-vector/blue-voronoi-pattern-background_16302136.htm</a>.  
+          Licencia: Requiere atribución.
+        </li>
+        <li>Freepik. <em>Gradient chess background</em>.  
+          URL: <a href="https://www.freepik.com/free-vector/gradient-chess-background_94957546.htm">https://www.freepik.com/free-vector/gradient-chess-background_94957546.htm</a>.  
+          Licencia: Requiere atribución.
+        </li>
+        <li>Sketchfab. <em>Relaxing stylized forest / meadow</em>.  
+          URL: <a href="https://sketchfab.com/3d-models/relaxing-stylized-forest--meadow-e18bac60c8194fc1a0ea262ca50a4a4b">https://sketchfab.com/3d-models/relaxing-stylized-forest--meadow-e18bac60c8194fc1a0ea262ca50a4a4b</a>.  
+          Licencia: Free Standard (no uso en datasets IA).
+        </li>
+         <li>Free3D. <em>Tree House v6</em>.  
+          URL: <a href="https://free3d.com/3d-model/tree-house-v6--245856.html">https://free3d.com/3d-model/tree-house-v6--245856.html</a>.  
+         Licencia: Uso personal.
+        </li>
+      </ul>
+      <p>Este trabajo es parte de un proyecto académico y no tiene fines lucrativos.  
+        Las figuras modeladas por Moisés están basadas en los personajes y escenarios de la serie <em>Rick y Morty</em>, cuyos derechos de autor pertenecen a sus creadores originales <em>Justin Roiland</em> y <em>Dan Harmon</em>, y a las productoras y distribuidoras <em>Adult Swim</em> y <em>Warner Bros. Discovery</em>.
+      </p>
+
+      <p><em>Trabajo realizado por Moisés Mota Alarcón para la asignatura Realidad Virtual. UOC (2025/26)</em></p>
+    </div>
+  </footer>
+</div>
 </body>
 </html>

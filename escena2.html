@@ -2,135 +2,190 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Escena 2 - Proyecto VR</title>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Escena2 VR - Chess</title>
+  <meta name="description" content="Tablero de Ajedrez - PEC 1 Realidad Virtual">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Plus+Jakarta+Sans:wght@700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="recursos/styles/styles.css">
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.0.0/dist/aframe-environment-component.min.js"></script>
 </head>
+
 <body>
-  <a-scene environment="preset: checkerboard; dressing: towers; dressingAmount: 20; groundColor: #445; skyColor: #222; lightPosition: 0 20 0">
+<!-- Escena con entorno checkerboard y configuraciones de dressing -->
+<a-scene environment="preset: checkerboard; dressing: towers; dressingAmount: 20; groundColor: #445; skyColor: #222; lightPosition: 0 20 0">
 
-    <a-assets>
+  <!-- Luces de la escena -->
+  <!-- Luz ambiente general -->
+  <a-light type="ambient" color="#ffffff" intensity="1.2"></a-light>
+  <!-- Luz direccional simulando el sol -->
+  <a-light type="directional" color="#ffffff" intensity="1" position="0 10 -5"></a-light>
+  <!-- Punto de luz cerca de Morty para iluminación puntual -->
+  <a-light type="point" color="#ffd27f" intensity="0.8" distance="20" position="1 5 -6"></a-light>
 
-      <!-- Modelo Morty -->
-      <a-asset-item id="Morty-glb" src="recursos/modelos/Morty.glb"></a-asset-item>
-      
-      <!-- Modelo Rick -->
-      <a-asset-item id="Rick-glb" src="recursos/modelos/Rick.glb"></a-asset-item>
+  <!-- Assets: modelos 3D y texturas -->
+  <a-assets>
+    <!-- Modelos 3D de personajes y nave -->
+    <a-asset-item id="Morty-mtl" src="recursos/modelos/Morty.mtl"></a-asset-item>
+    <a-asset-item id="Morty" src="recursos/modelos/Morty.obj"></a-asset-item>
+    <a-asset-item id="Rick-mtl" src="recursos/modelos/Rick.mtl"></a-asset-item>
+    <a-asset-item id="Rick" src="recursos/modelos/Rick.obj"></a-asset-item>
+    <a-asset-item id="Nave-mtl" src="recursos/modelos/Nave.mtl"></a-asset-item>
+    <a-asset-item id="Nave" src="recursos/modelos/Nave.obj"></a-asset-item>
 
-      <!-- Modelo Nave -->
-      <a-asset-item id="Nave-glb" src="recursos/modelos/Nave.glb"></a-asset-item>
+    <!-- Imagen para el link entre escenas -->
+    <img id="EscenaBosque" src="recursos/images/Fantasia.png">
 
-      
-      <!-- Imagen para link -->
-      <img id="EscenaFantasia" src="recursos/images/Fantasia.png">
-      
-        <!-- Imagen texturas -->
-      <img id="balonTexture" src="recursos/texturas/balon.jpg">
-    </a-assets>
+    <!-- Textura para la pelota -->
+    <img id="balonTexture" src="recursos/texturas/balon.jpg">
+  </a-assets>
 
+  <!-- Morty flotando y rotando -->
+  <a-entity obj-model="obj: #Morty; mtl: #Morty-mtl"
+            position="2 4 -3"
+            rotation="0 -100 0"
+            scale="1.2 1.2 1.2">
+    <!-- Animación de rotación continua -->
+    <a-animation attribute="rotation" 
+      to="0 230 0" 
+      dur="4000" 
+      easing="linear" 
+      repeat="indefinite">
+    </a-animation>
+    <!-- Animación de levitación -->
+    <a-animation attribute="position" 
+      from="2 4 -3" 
+      to="2 2 -3" 
+      direction="alternate" 
+      dur="2000" 
+      easing="ease-in-out" 
+      repeat="indefinite">
+    </a-animation>
+  </a-entity>
 
-    <!-- Morty flotando arriba y abajo -->
-    <a-entity gltf-model="#Morty-glb"
-              position="1 1 -6"
-              scale="1.2 1.2 1.2"
-              rotation="0 230 0"
-              animation="property: position; to: 1 5 -6; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true">
-    </a-entity>
+  <!-- Pelota que rebota al interactuar -->
+  <a-sphere radius="0.8" 
+    color="white" 
+    position="10 1 -5" 
+    material="src: #balonTexture">
+    <!-- Rotación al pasar el mouse -->
+    <a-animation attribute="rotation" 
+      to="0 0 230" 
+      dur="1000" 
+      easing="linear" 
+      repeat="3" 
+      begin="mouseenter">
+    </a-animation>
+    <!-- Animación de rebote -->
+    <a-animation attribute="position" 
+      to="-4 6 10" 
+      dur="2000" 
+      direction="alternate" 
+      repeat="1" 
+      easing="ease-in-out-sine" 
+      begin="mouseenter">
+    </a-animation>
+  </a-sphere>
 
-    <!-- Morty flotando arriba y abajo + rotando -->
-<!-- Morty flotando + rotando en X e Y -->
-<a-entity gltf-model="#Rick-glb"
-          position="10 8 -6"
-          scale="1.2 1.2 1.2"
-          rotation="0 0 0"
-          animation__float="property: position;
-                             to: 10 8 -6;
-                             dir: alternate;
-                             dur: 3000;
-                             easing: easeInOutSine;
-                             loop: true"
-          animation__spinY="property: rotation;
-                            to: 0 360 0;
-                            dur: 8000;
-                            loop: true;
-                            easing: linear"
-          animation__spinX="property: rotation;
-                            to: 360 360 0;
-                            dur: 12000;
-                            loop: true;
-                            easing: linear">
-</a-entity>
+  <!-- Texto debajo de la pelota -->
+  <a-text value="¡Hazme Rebotar!!" 
+    position="10 2.5 -5" 
+    align="center" 
+    color="white" 
+    side="double" 
+    width="8" 
+    scale="2 2 2">
+  </a-text>
 
+  <!-- Rick haciendo un 8 en el eje X y girando sobre sí mismo -->
+  <a-entity obj-model="obj: #Rick; mtl: #Rick-mtl" 
+    position="0 8 -6" 
+    scale="1.2 1.2 1.2" 
+    rotation="0 0 0">
+    <!-- Movimiento en X (ida y vuelta) -->
+    <a-animation attribute="position" 
+      from="-4 8 -6" 
+      to="4 8 -6" 
+      direction="alternate" 
+      dur="3000" 
+      easing="ease-in-out-sine" 
+      repeat="indefinite">
+    </a-animation>
+    <!-- Movimiento en Y (simula un 8 en el aire) -->
+    <a-animation attribute="position" 
+      from="0 6 -6" 
+      to="0 10 -6" 
+      direction="alternate" 
+      dur="1500" 
+      easing="ease-in-out-sine" 
+      repeat="indefinite">
+    </a-animation>
+    <!-- Rotación sobre sí mismo -->
+    <a-animation attribute="rotation" 
+      to="0 -360 0" 
+      dur="6000" 
+      easing="linear" 
+      repeat="indefinite">
+    </a-animation>
+  </a-entity>
 
-    
-        <!-- Nave -->
-    <a-entity gltf-model="#Nave-glb"
-              position="-1 0 -25"
-              scale="1.2 1.2 1.2"
-              rotation="0 250 0"
-              title="Nave Espacial"
-                        animation__hover="property: position;
-                             to: -1 20 -25;
-                             dur: 2000;
-                             dir: alternate;
-                             loop: 1;
-                             easing: easeInOutSine;
-                             startEvents: mouseenter;
-                             autoplay: false">
-    </a-entity>
+  <!-- Nave con animación al pasar el mouse -->
+  <a-entity id="nave" obj-model="obj: #Nave; mtl: #Nave-mtl" 
+    position="-5 0.1 -20" 
+    scale="1.2 1.2 1.2" 
+    rotation="0 250 0">
+    <!-- Animación de despegue al pasar el mouse -->
+    <a-animation attribute="position" 
+      from="-5 0.1 -20"
+      to="-5 20 -20" 
+      dur="2000" 
+      direction="alternate" 
+      repeat="1" 
+      easing="ease-in-out-sine"
+      begin="mouseenter">
+    </a-animation>
+    <!-- Caja invisible para detectar el mouse -->
+    <a-box position="8 3 0" 
+      width="10" 
+      height="6" 
+      depth="10" 
+      opacity="0" 
+      material="opacity:0; transparent:true">
+    </a-box>
+  </a-entity>
 
-    <!-- Texto debajo de la nave -->
-<!-- Texto debajo de la nave -->
-<a-text value="Despegamos??"
-        position="-10 1 -10"
-        align="center"
-        color="white"
-        side="double"
-        width="10"
-        scale="2 2 2">
-</a-text>
+  <!-- Texto debajo de la nave -->
+  <a-text value="Despegamos??" 
+    position="-15 1 -5" 
+    align="center" 
+    color="white" 
+    side="double" 
+    width="10" 
+    scale="2 2 2">
+  </a-text>
 
-<!-- Texto debajo de la nave -->
-<a-text value="¡Hazme Rebotar!!"
-        position="14 1 -5"
-        align="center"
-        color="white"
-        side="double"
-        width="8"
-        scale="2 2 2">
-</a-text>
+  <!-- Link a la escena anterior -->
+  <a-link href="escena1.html" 
+    title="Volver a la realidad" 
+    peekMode="false" 
+    image="#EscenaBosque" 
+    position="-2 3 -5" 
+    scale="2.5 2.5 2.5">
+  </a-link>
 
-<a-sphere radius="0.8" color="white" position="10 1 -5"
-          material="src: #balonTexture"
-          animation__hover="property: position;
-                             to: -4 6 10;
-                             dur: 2000;
-                             dir: alternate;
-                             loop: 1;
-                             easing: easeInOutSine;
-                             startEvents: mouseenter;
-                             autoplay: false">
-</a-sphere>
-
-
-    <!-- Link a otra escena con texto negro y más grande -->
-    <a-link href="escena1.html"
-            title="Volver a la realidad"
-            image="#EscenaFantasia"
-            position="-3 3 -10"
-            scale="3 3 3"
-            imageScale="0.5 0.5"
-            class="clickable">
-    </a-link>
-
-
-
-    <!-- Cámara con cursor -->
-  <a-camera position="0 2 6">
-    <!-- Cursor solo visible cuando apunta a algo interactuable -->
+  <!-- Cámara con cursor para interacción -->
+  <a-camera position="0 2 10">
     <a-cursor color="#66ffff" fuse="false" rayOrigin="entity"></a-cursor>
   </a-camera>
 
-  </a-scene>
+</a-scene>
 </body>
 </html>
