@@ -4,7 +4,7 @@
 
 Proyecto realizado para la asignatura de Realidad Virtual en la Universitat Oberta de Catalunya.
 
-**URL:** [Visitar la demo](#)  <!-- Aquí puedes poner el enlace de tu demo en Vercel o GitHub Pages -->
+**URL:** [Visitar la demo](https://realidad-virtual-pec-1.vercel.app/)
 
 ### Descripción
 
